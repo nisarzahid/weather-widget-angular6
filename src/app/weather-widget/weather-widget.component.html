@@ -1,0 +1,59 @@
+<div class="container content">
+  <!-- container centers content on large screens -->
+  <div class="widget">
+    <div class="row border-between">
+      <!-- responsive row has 12 columns by default -->
+      <div class="col-md-6">
+        <!-- uses 6 columns on medium and larger screens... -->
+        <form class="weather-form">
+          <div class="form-group">
+            <h2 for="inputTitle" class="pl-0">Title</h2>
+            <input type="text" (keyup)="onTitleKeyUp($event)" class="form-control form-control-lg" id="inputTitle" aria-describedby="emailHelp"
+              placeholder="Title of widget">
+          </div>
+          <h2 class="radio-label pl-0">Temperature</h2>
+          <div class="row">
+            <div class="form-group radio-btn col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-check-input" checked="checked" type="radio" name="inlineRadioOptions" id="tempOptions1" value="metric"
+                [(ngModel)]="temperature" #option1="ngModel" (ngModelChange)="onTemperatureChange(temperature)">
+
+              <label class="form-check-label radio-label" for="tempOptions1">&#730;C</label>
+            </div>
+            <div class="form-group pl-2 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="tempOptions2" value="imperial" [(ngModel)]="temperature"
+                #option1="ngModel" (ngModelChange)="onTemperatureChange(temperature)">
+              <label class="form-check-label radio-label" for="tempOptions2">&#730;F</label>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <h2 class="radio-label pl-0">Wind</h2>
+          <div class="row">
+            <div class="radio-btn col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-check-input" type="radio" name="windOptions" id="windOptions1" value="on" [(ngModel)]="wind" #optWindOn="ngModel">
+              <label class="form-check-label radio-label" for="windOptions1">On</label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-check-input" type="radio" name="windOptions" id="windOptions2" value="off" [(ngModel)]="wind" #optWindOff="ngModel">
+              <label class="form-check-label radio-label" for="windOptions2">Off</label>
+            </div>
+          </div>
+        </form>
+      </div> <!--col-md-6 -->
+
+      <div class="col-md-6">
+        <!-- uses 12 columns on smaller than medium screens -->
+        <div class="weather-info">
+          <h4 class="weather-info-title">{{title}}</h4>
+          <img class="weather-img" src="{{this.weatherInfo.weather[0].icon}}" alt="">
+          <div class="weather-info-text">
+            <h5 class="weather-info-city">{{weatherInfo.name}}</h5>
+            <h1 class="weather-info-temp">{{weatherInfo.main.temp | number: '1.0-0'}}&#730;</h1>
+            <span *ngIf="wind=='on'" class="weather-info-wind">
+              <b>Wind</b> {{weatherInfo.wind.direction}} {{(weatherInfo.wind.speed | number: '1.0-0')}} km/h</span>
+          </div>
+        </div>
+      </div> <!--col-md-6 -->
+      
+    </div> <!--row-->
+  </div> <!-- widget -->
+</div> <!--container -->
