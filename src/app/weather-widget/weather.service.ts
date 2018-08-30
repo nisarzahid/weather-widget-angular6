@@ -26,7 +26,7 @@ export class WeatherService {
 * @returns returns WeatherInfo object in json
 */
   getCurrentWeather(coords:any, units:string): Observable<any>{
-    if(units){
+    if(units==''){
       units = environment.units
     }
     
