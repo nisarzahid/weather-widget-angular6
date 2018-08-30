@@ -26,6 +26,10 @@ export class WeatherService {
 * @returns returns WeatherInfo object in json
 */
   getCurrentWeather(coords:any, units:string): Observable<any>{
+    if(units){
+      units = environment.units
+    }
+    
     let url = environment.baseUrl + 'weather?appid='+ environment.appId;
     return this.http.get(url +'&lat='+ coords.latitude +'&lon='+ coords.longitude +'&appid='+ environment.appId +'&units=' + units)
     .pipe(map((response:any) => {
